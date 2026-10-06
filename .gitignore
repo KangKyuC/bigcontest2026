@@ -1,0 +1,43 @@
+# Competition-provided data and source materials: keep local until publication scope is decided.
+/sk통신인구_데이터/
+/신한카드_데이터/
+/2026*.zip
+/2026*.pdf
+
+# Local analysis work: exclude the entire directory from the initial upload.
+/analysis/
+
+# Local administrative and agent handoff documents.
+/document/GIT_WORKFLOW.md
+/document/빅콘테스트2026_프로젝트_에이전트_인계프롬프트.md
+
+# Generated databases.
+*.duckdb
+*.duckdb.wal
+*.db
+*.sqlite
+*.sqlite3
+
+# Python environments and caches.
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Local credentials and runtime files.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.log
+
+# OS and temporary Office files.
+.DS_Store
+Thumbs.db
+Desktop.ini
+~$*
