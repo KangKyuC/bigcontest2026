@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": "seoul_202510",
+      "path": "public/seoul_citizen_202510.xlsx",
+      "bytes": 9419041,
+      "sha256": "2223b4bac3187d2a0e67888e4e3881a21b8b19d873d75c182640ba7d8b087163",
+      "access": "public",
+      "source_url": "https://data.seoul.go.kr/dataList/OA-22267/F/1/datasetView.do",
+      "download_url": "https://datafile.seoul.go.kr/bigfile/iot/inf/nio_download.do?&useCache=false",
+      "request_data": {
+        "infId": "OA-22267",
+        "infSeq": "1",
+        "seqNo": "",
+        "seq": "27"
+      }
+    },
+    {
+      "id": "seoul_202512",
+      "path": "public/seoul_citizen_202512.xlsx",
+      "bytes": 9379729,
+      "sha256": "ae700f90139dd4c194a39765179bceb34f5d3c5911b0badf574cc96202b64eff",
+      "access": "public",
+      "source_url": "https://data.seoul.go.kr/dataList/OA-22267/F/1/datasetView.do",
+      "download_url": "https://datafile.seoul.go.kr/bigfile/iot/inf/nio_download.do?&useCache=false",
+      "request_data": {
+        "infId": "OA-22267",
+        "infSeq": "1",
+        "seqNo": "",
+        "seq": "29"
+      }
+    },
+    {
+      "id": "sk_202507",
+      "path": "contest/sk/flow_age_pop_202507.csv",
+      "bytes": 10956655,
+      "sha256": "cbcf7ec1a93f16096aacd14ab6b39a6333639de36b9c97f2ee8256329a8ceafe",
+      "access": "competition_authorized",
+      "source_url": "https://www.bigcontest.or.kr/",
+      "delimiter": "|",
+      "download": "Obtain the official competition data through an authorized account; not redistributed here."
+    },
+    {
+      "id": "sk_202508",
+      "path": "contest/sk/flow_age_pop_202508.csv",
+      "bytes": 11095016,
+      "sha256": "f47ab3c263f9b521ca008c2c3f728d56c1bb6dcfea3186b0e95200218aa72e5f",
+      "access": "competition_authorized",
+      "source_url": "https://www.bigcontest.or.kr/",
+      "delimiter": "|",
+      "download": "Obtain the official competition data through an authorized account; not redistributed here."
+    },
+    {
+      "id": "sk_202509",
+      "path": "contest/sk/flow_age_pop_202509.csv",
+      "bytes": 11032732,
+      "sha256": "5290e977522d7d2c509f525c49019622579130120c6e708b8e7df659f2a20044",
+      "access": "competition_authorized",
+      "source_url": "https://www.bigcontest.or.kr/",
+      "delimiter": "|",
+      "download": "Obtain the official competition data through an authorized account; not redistributed here."
+    },
+    {
+      "id": "sk_202510",
+      "path": "contest/sk/flow_age_pop_202510.csv",
+      "bytes": 11246857,
+      "sha256": "07031855ce4fb924eb7c2a5b8e92ab2b3ddc8b65605d48a73415217aa146aea9",
+      "access": "competition_authorized",
+      "source_url": "https://www.bigcontest.or.kr/",
+      "delimiter": "|",
+      "download": "Obtain the official competition data through an authorized account; not redistributed here."
+    },
+    {
+      "id": "sk_202511",
+      "path": "contest/sk/flow_age_pop_202511.csv",
+      "bytes": 11142882,
+      "sha256": "df51a5e00c3d0b921d2dc04f20d5d9edd57ae738dceaee4995f5173ec9e58659",
+      "access": "competition_authorized",
+      "source_url": "https://www.bigcontest.or.kr/",
+      "delimiter": "|",
+      "download": "Obtain the official competition data through an authorized account; not redistributed here."
+    },
+    {
+      "id": "sk_202512",
+      "path": "contest/sk/flow_age_pop_202512.csv",
+      "bytes": 10884435,
+      "sha256": "4f9458e8204a27dfb560f3ecac5cd683b3f6cb58b6ebc944f9699f6b07a05bea",
+      "access": "competition_authorized",
+      "source_url": "https://www.bigcontest.or.kr/",
+      "delimiter": "|",
+      "download": "Obtain the official competition data through an authorized account; not redistributed here."
+    }
+  ],
+  "optional_sources": [
+    {
+      "id": "card2_utf8_csv",
+      "path": "contest/card/신한카드_빅콘테스트2026_데이터2.csv",
+      "bytes": 134725574,
+      "sha256": "d393ddb085cb0784e4a3901b44cb8201c1977ee390d26a4af574fddf3dec0327",
+      "access": "competition_authorized",
+      "source_url": "https://www.bigcontest.or.kr/",
+      "role": "Optional 24-group descriptive EDA; excluded from M3 fitting",
+      "format": "UTF-8 CSV converted from provided data2 TXT; use one copy only",
+      "encoding": "utf-8-sig",
+      "delimiter": ","
+    },
+    {
+      "id": "card2_original_txt",
+      "path": "contest/card/신한카드_빅콘테스트2026_데이터2.txt",
+      "bytes": 107844567,
+      "sha256": "b3632368148c54b1ee592bf5019e85661af2adff83473f32eb686553e76bff99",
+      "access": "competition_authorized",
+      "source_url": "https://www.bigcontest.or.kr/",
+      "role": "Alternative to CSV for the same optional EDA; never add both formats",
+      "encoding": "cp949",
+      "delimiter": "\t"
+    }
+  ]
+}

@@ -1,11 +1,23 @@
-# Competition-provided data and source materials: keep local until publication scope is decided.
+# Competition originals stay local. Public reproducibility code lives in repro/.
 /sk통신인구_데이터/
 /신한카드_데이터/
 /2026*.zip
 /2026*.pdf
 
-# Local analysis work: exclude the entire directory from the initial upload.
+# Preserve the original local research workspace; publish only the curated adapter.
 /analysis/
+/document/
+/data/raw/
+/repro/m3/data/
+/repro/m3/models/
+/repro/m3/results/
+/repro/m3/report/
+/repro/m3/*.joblib
+/repro/m3/*.log
+/reproduction_runs/
+/dist/
+*.joblib
+*.parquet
 
 # Local administrative and agent handoff documents.
 /document/GIT_WORKFLOW.md

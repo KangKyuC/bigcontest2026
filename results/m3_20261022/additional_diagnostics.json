@@ -1,0 +1,58 @@
+{
+  "post_fit": true,
+  "reason": "LODO and five-block validation had different directions. No replacement of primary result.",
+  "additional_partitions": [
+    {
+      "blocks": 4,
+      "role": "post-fit exploratory sensitivity",
+      "mae_outings": 0.8540354547803493,
+      "mae_plus_SK": 0.7725569914259954,
+      "group_mean_improvement": {
+        "mean": 0.08791815804141973,
+        "lower": -0.009451204886389841,
+        "upper": 0.17386080869571074,
+        "n": 4,
+        "interpretation": "percentile interval resampling fixed held-out group errors; not all training uncertainty"
+      }
+    },
+    {
+      "blocks": 6,
+      "role": "post-fit exploratory sensitivity",
+      "mae_outings": 0.7848851398786527,
+      "mae_plus_SK": 0.7098007479810876,
+      "group_mean_improvement": {
+        "mean": 0.07679503684903466,
+        "lower": -0.0025429184263004445,
+        "upper": 0.15115699960739007,
+        "n": 6,
+        "interpretation": "percentile interval resampling fixed held-out group errors; not all training uncertainty"
+      }
+    }
+  ],
+  "residual_spatial_diagnostics": [
+    {
+      "moran_I": 0.6755708103157628,
+      "expected_under_exchangeability": -0.047619047619047616,
+      "permutation_p": 0.0001,
+      "permutations": 9999,
+      "note": "Exploratory 22-dong mean residual diagnostic, symmetrized 4-nearest-neighbor graph with row-standardized weights. Exchangeability is approximate; no causal inference.",
+      "model": "demographics"
+    },
+    {
+      "moran_I": 0.4673463249505446,
+      "expected_under_exchangeability": -0.047619047619047616,
+      "permutation_p": 0.0006,
+      "permutations": 9999,
+      "note": "Exploratory 22-dong mean residual diagnostic, symmetrized 4-nearest-neighbor graph with row-standardized weights. Exchangeability is approximate; no causal inference.",
+      "model": "outings"
+    },
+    {
+      "moran_I": -0.13321022663662913,
+      "expected_under_exchangeability": -0.047619047619047616,
+      "permutation_p": 0.4721,
+      "permutations": 9999,
+      "note": "Exploratory 22-dong mean residual diagnostic, symmetrized 4-nearest-neighbor graph with row-standardized weights. Exchangeability is approximate; no causal inference.",
+      "model": "outings_plus_SK"
+    }
+  ]
+}

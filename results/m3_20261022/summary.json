@@ -1,0 +1,130 @@
+{
+  "primary_candidate": "shrink_1",
+  "rows": 220,
+  "dongs": 22,
+  "n_components": 1,
+  "density_gain_vs_shrink": {
+    "mean": -0.0802775719810172,
+    "lower": -0.24083271594305164,
+    "upper": 0.0,
+    "n": 22,
+    "interpretation": "percentile interval resampling fixed held-out group errors; not all training uncertainty"
+  },
+  "spatial_density_gain_vs_shrink": {
+    "mean": -0.21643154719090987,
+    "lower": -0.6492946415727296,
+    "upper": 0.0,
+    "n": 5,
+    "interpretation": "percentile interval resampling fixed held-out group errors; not all training uncertainty"
+  },
+  "stability": {
+    "candidate": "shrink_1",
+    "n_components": 1,
+    "successful_repeats": 200,
+    "failed_repeats": 0,
+    "oob_ari_median": null,
+    "oob_ari_p10": null,
+    "oob_ari_p90": null,
+    "median_cell_assignment_agreement": null,
+    "type_stability_applicable": false,
+    "note": "K=1 label agreement is tautologically perfect and is not reported as evidence of type stability."
+  },
+  "exploratory_gmm_stability": {
+    "candidate": "diag_3",
+    "n_components": 3,
+    "successful_repeats": 200,
+    "failed_repeats": 0,
+    "oob_ari_median": 0.38974016342127427,
+    "oob_ari_p10": 0.23308166460871924,
+    "oob_ari_p90": 0.7851926526811847,
+    "median_cell_assignment_agreement": 0.709384164222874,
+    "type_stability_applicable": true,
+    "note": "OOB dong reassignment stability; not accuracy against isolation ground truth."
+  },
+  "kmeans_baseline_stability": {
+    "candidate": "kmeans_2",
+    "n_components": 2,
+    "successful_repeats": 200,
+    "failed_repeats": 0,
+    "oob_ari_median": 0.82934860076157,
+    "oob_ari_p10": 0.5435845603403239,
+    "oob_ari_p90": 0.9499910254499443,
+    "median_cell_assignment_agreement": 1.0,
+    "type_stability_applicable": true,
+    "note": "OOB dong reassignment stability; not accuracy against isolation ground truth."
+  },
+  "SK_contact_mae_improvement": {
+    "mean": -0.025015646271396907,
+    "lower": -0.19154205505426475,
+    "upper": 0.10499284783792553,
+    "n": 22,
+    "interpretation": "percentile interval resampling fixed held-out group errors; not all training uncertainty"
+  },
+  "SK_spatial_contact_mae_improvement": {
+    "mean": 0.10459468112369834,
+    "lower": 0.03139688974245314,
+    "upper": 0.1683077831807287,
+    "n": 5,
+    "interpretation": "percentile interval resampling fixed held-out group errors; not all training uncertainty"
+  },
+  "regression_metrics": [
+    {
+      "scheme": "dong",
+      "model": "demographics",
+      "mae": 0.8611665071733504,
+      "rmse": 1.1418113364254574,
+      "r2": 0.8973398914006778
+    },
+    {
+      "scheme": "dong",
+      "model": "outings",
+      "mae": 0.7467289218144036,
+      "rmse": 1.016473171047825,
+      "r2": 0.9186411392198456
+    },
+    {
+      "scheme": "dong",
+      "model": "outings_plus_SK",
+      "mae": 0.7717445680858005,
+      "rmse": 1.043080083464504,
+      "r2": 0.9143261419589349
+    },
+    {
+      "scheme": "spatial",
+      "model": "demographics",
+      "mae": 0.9457479338214991,
+      "rmse": 1.2285823734285164,
+      "r2": 0.8811438718637563
+    },
+    {
+      "scheme": "spatial",
+      "model": "outings",
+      "mae": 0.8345881312936977,
+      "rmse": 1.1150446268788727,
+      "r2": 0.9020966580505795
+    },
+    {
+      "scheme": "spatial",
+      "model": "outings_plus_SK",
+      "mae": 0.731694018423975,
+      "rmse": 0.9863514102849471,
+      "r2": 0.9233916060073019
+    }
+  ],
+  "adoption": {
+    "type_adopted": false,
+    "criteria": {
+      "selected_more_than_one_component": false,
+      "nested_gain_over_shrink_lower_ci_above_zero": false,
+      "oob_ari_median": false,
+      "oob_ari_lower_tail": false,
+      "min_type_cells": true,
+      "min_type_dongs": true,
+      "bootstrap_fits_converged": true
+    },
+    "output_if_not_adopted": "Continuous aggregate characteristic profiles; component labels remain exploratory.",
+    "threshold_status": "Prespecified engineering adoption rules; not universally validated statistical cutoffs."
+  },
+  "fit_seconds": 60.295615673065186,
+  "interpretation": "No individual isolation labels, risk probability, causal effects or policy-demand ground truth."
+}

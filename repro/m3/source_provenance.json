@@ -1,0 +1,52 @@
+[
+  {
+    "file": "m3lib.py",
+    "original_sha256": "7640aab43e257cb86799c1842304240777c09944f0e7353324be242653746411",
+    "source": "M3 local research implementation, 2026-10-22"
+  },
+  {
+    "file": "train_evaluate.py",
+    "original_sha256": "03b587215ec37cb3f679eeb35b680bd73923c914f1f07bb82f77d772cfe00247",
+    "source": "M3 local research implementation, 2026-10-22"
+  },
+  {
+    "file": "additional_diagnostics.py",
+    "original_sha256": "ca469846e6f80d902cc708d085d32783ea4837563fd21cccdf62459d5a3ab977",
+    "source": "M3 local research implementation, 2026-10-22"
+  },
+  {
+    "file": "predict.py",
+    "original_sha256": "33a7a1f16902f3e8417f4f6a1422b427690b6e292d6cb55e566c57026409dcb9",
+    "source": "M3 local research implementation, 2026-10-22"
+  },
+  {
+    "file": "validate_model.py",
+    "original_sha256": "3b013043a54da3243a258e2a5bb308c648b068d6eea5dcb1280b03f98f1f0969",
+    "source": "M3 local research implementation, 2026-10-22"
+  },
+  {
+    "file": "prepare_data.py",
+    "original_sha256": "aaf104448db57c42cda0054b496008f397263108f69acb50b6c4aff353af164f",
+    "source": "M3 local research implementation, 2026-10-22"
+  },
+  {
+    "file": "build_deliverables.py",
+    "original_sha256": "bd69de01ba1ad5d34fac7c5b60a4e64412b2571a94469d0d342a766c866a24b3",
+    "source": "M3 local research implementation, 2026-10-22"
+  },
+  {
+    "file": "config.json",
+    "original_sha256": "349b72905b51b0ba0c4a55b19d8d38650b9ab8299f31cbe7b4d80a1e2306cb9b",
+    "source": "M3 local research implementation, 2026-10-22"
+  },
+  {
+    "file": "분석계약.md",
+    "original_sha256": "d38b51a530d64bec2683fa125333a5bd6f88194afe5b0b43d8c243eb5d936960",
+    "source": "M3 local research implementation, 2026-10-22"
+  },
+  {
+    "file": "보조진단_추가계획.md",
+    "original_sha256": "93134ce573478a6803c0bb4fd81d4358fffcf220d358ba2966c4d96725dc0e3a",
+    "source": "M3 local research implementation, 2026-10-22"
+  }
+]

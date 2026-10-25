@@ -1,0 +1,30 @@
+{
+  "checked_at_utc": "2026-10-25T08:41:38.253515+00:00",
+  "environment": "Fresh Windows CPython 3.9 virtual environment; fresh export of Git index, with LF line endings and a different path containing spaces and an apostrophe.",
+  "full_pipeline_passed": true,
+  "input_checks": 49,
+  "model_contract_checks": 25,
+  "numeric_reference_checks": 23,
+  "numeric_absolute_tolerance": 1e-06,
+  "data_free_contract_tests": 10,
+  "public_downloads_sha256_verified": 2,
+  "report_generated": {
+    "artifacts": 7,
+    "sheets": 17,
+    "profiles": 220
+  },
+  "original_research_inputs_numeric_max_difference": 0.0,
+  "activity_24_groups_reference_comparison": {
+    "passed": true,
+    "absolute_tolerance": 1e-06,
+    "csv_and_original_txt_supported": true
+  },
+  "dependency_check": "pip check passed in the fresh environment",
+  "ci_status": "Configured separately; this record describes local verification, not a GitHub Actions conclusion.",
+  "limits": [
+    "Private competition originals are required for full reproduction.",
+    "No ground-truth isolation-risk or policy-effect validation.",
+    "Word artifacts generated and ZIP structure checked; page rendering not verified.",
+    "Cross-platform full numerical training has not been tested."
+  ]
+}

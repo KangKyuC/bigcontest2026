@@ -1,0 +1,37 @@
+{
+  "version": "M3-1.0",
+  "seed": 20261022,
+  "primary_window": 202510,
+  "sensitivity_window": 202512,
+  "windows": {"202510": [202507, 202508, 202509], "202512": [202509, 202510, 202511]},
+  "primary_features": ["contact", "weekday_move", "holiday_move", "flow_per_point", "flow_concentration", "flow_change_log"],
+  "blocks": {"contact": ["contact"], "outings": ["weekday_move", "holiday_move"], "place": ["flow_per_point", "flow_concentration", "flow_change_log"]},
+  "log1p_features": ["contact", "sms_contact", "weekday_move", "holiday_move", "weekday_distance", "holiday_distance", "weekday_home_seconds", "holiday_home_seconds", "flow_per_point", "flow_concentration"],
+  "candidate_k": [1, 2, 3, 4, 5],
+  "inner_folds": 5,
+  "spatial_blocks": 5,
+  "gmm_n_init": 10,
+  "gmm_max_iter": 1000,
+  "gmm_reg_covar": 0.01,
+  "kmeans_n_init": 30,
+  "bootstrap_repeats": 200,
+  "ci_repeats": 10000,
+  "ridge_alphas": [0.1, 1.0, 10.0, 100.0, 1000.0],
+  "quality_warning_unestimated_share": 0.2,
+  "quality_exclusion_unestimated_share": 0.5,
+  "adoption": {
+    "require_nested_density_gain_lower_ci_above_zero": true,
+    "bootstrap_oob_ari_median_min": 0.75,
+    "bootstrap_oob_ari_p10_min": 0.5,
+    "min_cells_per_type": 5,
+    "min_dongs_per_type": 3,
+    "soft_assignment_review_probability": 0.7
+  },
+  "claims": {
+    "unit": "Gangnam administrative-dong x sex x adult ten-year-age aggregate profile",
+    "primary_estimand": "equal-weight age-standardized aggregate characteristics, not a person-level mean or risk",
+    "not_estimated": ["individual social isolation", "isolation probability", "number of isolated residents", "service demand", "causal policy effects"],
+    "temporal_validation": "October and December source windows overlap; sensitivity only",
+    "policy_conditions": "observed aggregate characteristics must not overwrite legal eligibility or unobserved individual needs"
+  }
+}
