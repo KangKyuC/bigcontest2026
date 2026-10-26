@@ -95,5 +95,22 @@
     "Full numerical reproduction was executed on Windows Python 3.11; Linux CI exercises public code without private data.",
     "Word and PDF generated; Word page rendering was not audited.",
     "No guarantee of absence of undiscovered or future vulnerabilities."
-  ]
+  ],
+  "github_remote_verification": {
+    "checked_at_utc": "2026-10-26T15:15:48.459345+00:00",
+    "code_commit": "913dd7fbae2dbbc5d058a2bff8e2a1751c76c590",
+    "public_code_workflow": "https://github.com/KangKyuC/bigcontest2026/actions/runs/40345853076",
+    "public_code_conclusion": "success",
+    "security_workflow": "https://github.com/KangKyuC/bigcontest2026/actions/runs/40345852683",
+    "security_conclusion": "success",
+    "code_scanning_open_alerts": 0,
+    "secret_scanning_open_alerts": 0,
+    "dependabot_open_alerts": 0,
+    "legacy_alerts_reviewed": {
+      "count": 58,
+      "manifest": "requirements-lock-py39.txt",
+      "reason": "not_used",
+      "removed_at_commit": "913dd7fbae2dbbc5d058a2bff8e2a1751c76c590"
+    }
+  }
 }
