@@ -133,13 +133,9 @@
 .with-panel .brief{width:320px;padding:14px}
 .with-panel .brief h1{font-size:15px;margin-bottom:8px}
 
-/* FontShare Satoshi: 숫자만 씀(통계·순위). 한글은 Pretendard. */
-@font-face{font-family:Satoshi;src:url('/fonts/Satoshi-500.woff2') format('woff2');font-weight:500;font-display:swap}
-@font-face{font-family:Satoshi;src:url('/fonts/Satoshi-700.woff2') format('woff2');font-weight:700;font-display:swap}
-@font-face{font-family:Satoshi;src:url('/fonts/Satoshi-900.woff2') format('woff2');font-weight:900;font-display:swap}
-.num{font-family:Satoshi,var(--font-family);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.num{font-family:var(--font-family);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
 .stat b.num{font-size:26px;font-weight:900}
-.pin-code,.avatar{font-family:Satoshi,var(--font-family);letter-spacing:-.01em}
+.pin-code,.avatar{font-family:var(--font-family);letter-spacing:-.01em}
 
 .brief-list button{align-items:center}
 .brief-list .dot{margin-top:0}
@@ -246,7 +242,7 @@
 .trace{margin-top:12px;border-top:1px solid var(--border-subtle);padding-top:10px}
 .trace-title{display:flex;align-items:center;gap:6px;margin:0;font-size:13px;font-weight:650;color:var(--text-secondary)}
 .trace ol{margin:10px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:13px;line-height:1.6;color:var(--text-secondary)}
-.trace li::marker{color:var(--text-tertiary);font-family:Satoshi,var(--font-family);font-weight:700}
+.trace li::marker{color:var(--text-tertiary);font-family:var(--font-family);font-weight:700}
 
 /* 한국어는 어절 단위로 줄바꿈해서 '요'만 혼자 떨어지지 않게 */
 .agent-app{word-break:keep-all;overflow-wrap:anywhere}

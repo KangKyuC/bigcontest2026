@@ -3,8 +3,9 @@ import { Button } from '@/components/ui/button';
 import type { Field, Persona, PolicyRec } from './types';
 import { KIND, PATH, REC_KIND, STATUS } from './types';
 import { ListChecks } from 'lucide-react';
+import { externalUrl } from '@/lib/external-url';
 
-const SRC: Record<string, string> = { '연락·외출 예측': 'model', '주말 사람 흐름': 'flow', '소비 패턴': 'card', '주의': 'warn' };
+const SRC: Record<string, string> = { '연락·외출 집계': 'model', '주말 사람 흐름': 'flow', '소비 패턴': 'card', '주의': 'warn' };
 const MODE_ICON: Record<string, typeof Users> = { '나가서 만남': Users, '전화·온라인': PhoneCall, '집으로 찾아옴': Home };
 
 type Props = { persona: Persona; badge: string; fn: string; recs: PolicyRec[]; onFn: (f: string) => void; onClose: () => void; onRec: (id: string) => void };
@@ -100,7 +101,7 @@ export default function PersonaPanel({ persona, badge, fn, recs, onFn, onClose, 
                       {r.sites.length > 0 && <span><MapPin size={12} aria-hidden />지도에 {r.sites.length}곳</span>}
                     </p>
                   </div>
-                  {r.source && <a href={r.source} target="_blank" rel="noreferrer" aria-label={`${r.name} 공고 원문 열기`}><ArrowUpRight size={16} /></a>}
+                  {externalUrl(r.source) && <a href={externalUrl(r.source)} target="_blank" rel="noopener noreferrer" aria-label={`${r.name} 공고 원문 열기`}><ArrowUpRight size={16} /></a>}
                 </li>
               );
             })}

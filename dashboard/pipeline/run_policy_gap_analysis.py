@@ -27,10 +27,10 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib import font_manager  # noqa: E402
 
-ROOT = Path(__file__).resolve().parent
-PROGRAMS = ROOT / 'data' / 'policy' / 'policy_programs_final.csv'
-OUT = ROOT / 'data' / 'policy' / 'analysis'
-FONT = ROOT / 'data' / 'reference' / 'NanumGothic-Regular.ttf'
+from paths import ROOT, DATA_ROOT
+PROGRAMS = DATA_ROOT / 'policy' / 'policy_programs_final.csv'
+OUT = DATA_ROOT / 'policy' / 'analysis'
+FONT = DATA_ROOT / 'reference' / 'NanumGothic-Regular.ttf'
 REGIONS = ['강남', '춘천']
 
 AGES = [22, 30, 38, 45, 52, 60, 64, 66, 72, 80]

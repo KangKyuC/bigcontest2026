@@ -17,8 +17,9 @@ import pandas as pd
 from pyproj import Transformer
 
 # -I 실행에서도 이 프로젝트의 검증된 엔진만 명시적으로 불러옴.
-ROOT = Path(__file__).resolve().parent
-sys.path.insert(0, str(ROOT))
+PIPELINE = Path(__file__).resolve().parent
+sys.path.insert(0, str(PIPELINE))
+from paths import ROOT, DASHBOARD, DATA_ROOT
 import policy_gap_engine as e
 from run_policy_gap_analysis import load_programs, scenarios
 from dashboard_briefing import load_briefing_sources, policy_briefing, review_draft as build_review_draft
@@ -26,7 +27,7 @@ from dashboard_personas import build_persona_catalog, summarize_support
 from dashboard_agent import build_agent, persona_detail, summary as agent_summary
 from dashboard_policy import build_policy
 
-POLICY = ROOT / 'data/policy'
+POLICY = DATA_ROOT / 'policy'
 REGIONS = ['강남', '춘천']
 DEFAULT = dict(region='춘천', age=52, sex='여', household='1인', income='일반',
                access='일반(모든 채널 가능)', weekday_day_ok=False, disabled=False,
@@ -103,7 +104,7 @@ def load_data() -> dict:
         return [coordinates(child) for child in value]
 
     for region, code in [('강남', '11230'), ('춘천', '32010')]:
-        geo = json.loads((ROOT / f'data/reference/boundary_{code}_2025.geojson').read_text())
+        geo = json.loads((DATA_ROOT / f'reference/boundary_{code}_2025.geojson').read_text(encoding='utf-8'))
         geographic = deepcopy(geo['features'])
         for feature in geographic:
             feature['geometry']['coordinates'] = coordinates(feature['geometry']['coordinates'])
@@ -243,9 +244,26 @@ def make_server(host: str = '127.0.0.1', port: int = 8765) -> ThreadingHTTPServe
     if host not in ('127.0.0.1', 'localhost'):
         raise ValueError('로컬 주소에서만 실행할 수 있습니다.')
     data = load_data()
-    build = (ROOT / 'dashboard/dist').resolve()
+    build = (DASHBOARD / 'dist').resolve()
 
     class Handler(BaseHTTPRequestHandler):
+        def setup(self):
+            super().setup()
+            self.connection.settimeout(10)
+
+        def local_request(self):
+            # Reject DNS rebinding and requests originating from other websites.
+            hosts = {f'127.0.0.1:{self.server.server_port}', f'localhost:{self.server.server_port}'}
+            host_headers = self.headers.get_all('Host', [])
+            if len(host_headers) != 1 or host_headers[0] not in hosts:
+                self.reply(403, {'error': '로컬 주소로 요청해 주세요.'})
+                return False
+            origin = self.headers.get('Origin')
+            if origin and origin != f'http://{host_headers[0]}':
+                self.reply(403, {'error': '같은 로컬 화면에서 요청해 주세요.'})
+                return False
+            return True
+
         def reply(self, status, body, content_type='application/json; charset=utf-8'):
             if isinstance(body, dict):
                 body = json.dumps(body, ensure_ascii=False, allow_nan=False).encode('utf-8')
@@ -254,6 +272,8 @@ def make_server(host: str = '127.0.0.1', port: int = 8765) -> ThreadingHTTPServe
             self.send_header('Content-Length', str(len(body)))
             self.send_header('Cache-Control', 'no-store')
             self.send_header('X-Content-Type-Options', 'nosniff')
+            self.send_header('X-Frame-Options', 'DENY')
+            self.send_header('Referrer-Policy', 'strict-origin-when-cross-origin')
             self.end_headers()
             try:
                 self.wfile.write(body)
@@ -261,6 +281,8 @@ def make_server(host: str = '127.0.0.1', port: int = 8765) -> ThreadingHTTPServe
                 pass  # 다른 조건으로 재조회하면서 취소한 브라우저 요청임.
 
         def do_GET(self):
+            if not self.local_request():
+                return
             parsed = urlsplit(self.path)
             try:
                 if parsed.path == '/api/meta':
@@ -311,18 +333,18 @@ def make_server(host: str = '127.0.0.1', port: int = 8765) -> ThreadingHTTPServe
                 self.reply(500, {'error': '자료를 읽지 못했습니다. 서버 실행 상태를 확인해 주세요.'})
 
         def do_POST(self):
+            if not self.local_request():
+                return
             route = urlsplit(self.path).path
             if route not in ('/api/diagnose', '/api/simulate', '/api/draft', '/api/persona-check'):
                 self.reply(404, {'error': '요청한 계산을 찾지 못했습니다.'})
-                return
-            origin = self.headers.get('Origin')
-            if origin and origin != f"http://{self.headers.get('Host')}":
-                self.reply(403, {'error': '같은 로컬 화면에서 요청해 주세요.'})
                 return
             if self.headers.get('Content-Type', '').split(';')[0].strip() != 'application/json':
                 self.reply(415, {'error': 'JSON 형식으로 요청해 주세요.'})
                 return
             try:
+                if self.headers.get('Transfer-Encoding') or len(self.headers.get_all('Content-Length', [])) != 1:
+                    raise ValueError('요청 크기를 명확히 지정해 주세요.')
                 size = int(self.headers.get('Content-Length', '-1'))
                 if size < 0:
                     raise ValueError('요청 크기를 확인해 주세요.')

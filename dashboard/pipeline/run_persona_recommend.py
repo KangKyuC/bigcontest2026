@@ -12,8 +12,8 @@ import pandas as pd
 import policy_gap_engine as e
 from run_policy_gap_analysis import load_programs
 
-ROOT = Path(__file__).resolve().parent
-OUT = ROOT / 'data/policy/personas'
+from paths import ROOT, DATA_ROOT
+OUT = DATA_ROOT / 'policy/personas'
 MEET, REMOTE, HOME = '나가서 만남', '전화·온라인', '집으로 찾아옴'
 
 # 특성 → 먼저 보여 줄 서비스 방식. 결과를 보기 전에 정한 규칙임.

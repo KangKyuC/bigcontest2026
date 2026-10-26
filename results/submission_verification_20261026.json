@@ -1,0 +1,99 @@
+{
+  "checked_at_utc": "2026-10-26T15:00:34.259065+00:00",
+  "environment": {
+    "os": "Windows",
+    "python": "3.11.17",
+    "node": "24.21.0",
+    "npm": "11.19.0",
+    "separate_reproduction_directory": true
+  },
+  "source_baselines": {
+    "m3": "d6047df0f616d80e65cc5402c048388425b83be5",
+    "dashboard": "eced6914ee60d67ee769be536b2699b3ad838dde"
+  },
+  "public_tests": {
+    "passed": 48,
+    "private_integration_tests_deselected": 6,
+    "pytest": "9.1.1"
+  },
+  "m3_reproduction": {
+    "full_pipeline_passed": true,
+    "input_checks": 49,
+    "model_checks": 25,
+    "numeric_reference_checks": 23,
+    "numeric_absolute_tolerance": 1e-06,
+    "public_sources_freshly_downloaded_and_sha256_verified": 2,
+    "report_artifacts": 7,
+    "excel_sheets": 17,
+    "profile_rows": 220
+  },
+  "dashboard": {
+    "typescript_and_production_build_passed": true,
+    "snapshot_personas": 75,
+    "policy_programs": 54,
+    "browser": {
+      "passed": true,
+      "checks": [
+        "desktop overview and bundled assets",
+        "representative scenario detail and observation labels",
+        "region switch and policy recommendation detail",
+        "settings dialog and interpretation guidance",
+        "mobile 390px scenario panel without horizontal overflow",
+        "untrusted link and HTML injection are not executable"
+      ],
+      "browser_errors": [],
+      "missing_local_assets": [],
+      "csp_enforced": true,
+      "desktop_viewport": [
+        1440,
+        960
+      ],
+      "mobile_viewport": [
+        390,
+        844
+      ]
+    }
+  },
+  "security": {
+    "gitleaks": {
+      "version": "8.30.1",
+      "history_findings": 0,
+      "all_branches_reviewed": true
+    },
+    "pip_audit": {
+      "version": "2.10.1",
+      "audited_packages": 24,
+      "known_vulnerabilities": 0,
+      "lockfile": "requirements-lock-py311.txt"
+    },
+    "npm_audit": {
+      "known_vulnerabilities": 0,
+      "includes_dev_dependencies": true
+    },
+    "bandit": {
+      "version": "1.9.4",
+      "minimum_severity": "medium",
+      "findings": 0
+    },
+    "pillow_version": "13.0.0",
+    "pip_check_passed": true
+  },
+  "github_settings_applied": {
+    "dependabot_alerts": true,
+    "dependabot_security_updates": true,
+    "private_vulnerability_reporting": true,
+    "actions_full_sha_required": true,
+    "secret_scanning_already_enabled": true,
+    "push_protection_already_enabled": true,
+    "main_force_pushes_and_deletions_blocked": true
+  },
+  "ci": "See GitHub Actions for the remote conclusion at each commit; this record describes observed local checks.",
+  "limits": [
+    "Private policy research inputs were unavailable; full policy snapshot regeneration and six integration tests were not executed.",
+    "No production hosting deployment or audit was performed; browser checks used the repository build and its intended CSP.",
+    "No ground-truth personal isolation risk or policy impact validation.",
+    "Full numerical reproduction was executed on Windows Python 3.11; Linux CI exercises public code without private data.",
+    "Word and PDF generated; Word page rendering was not audited.",
+    "No guarantee of absence of undiscovered or future vulnerabilities."
+  ]
+}

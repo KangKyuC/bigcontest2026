@@ -21,10 +21,10 @@ from statistics import NormalDist
 import numpy as np
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parent
-OUT = ROOT / 'data/policy/personas'
+from paths import ROOT, DATA_ROOT
+OUT = DATA_ROOT / 'policy/personas'
 LOW, HIGH = 0.2, 0.8
-LAYERS = ROOT / 'data/external/gn_cc_dong_layers.csv'  # 동 추정 인구
+LAYERS = DATA_ROOT / 'external/gn_cc_dong_layers.csv'  # 동 추정 인구
 AGE = {'20대': 25, '30대': 35, '40대': 45, '50대': 55, '60세 이상': 70}
 CARD = {('강남', '남', '40대'): '사람 만나는 곳(식당·카페·술집) 소비 비중이 앞뒤 나이대보다 약 20% 낮아요 (강남구 전체)',
         ('강남', '남', '60세 이상'): '편의점·패스트푸드 소비 비중이 같은 나이 여성의 1.4~1.6배예요 (강남구 전체)',

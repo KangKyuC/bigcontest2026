@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "source_commit": "eced6914ee60d67ee769be536b2699b3ad838dde",
+  "source_branch": "feat/dashboard",
+  "research_snapshot_date": "2026-10-26",
+  "publication_changes": "Observation labels corrected; numeric scenario outputs preserved.",
+  "personas": {
+    "total": 75,
+    "representative": 5,
+    "dong": 70
+  },
+  "programs": {
+    "gangnam": 37,
+    "chuncheon": 17
+  },
+  "files": {
+    "agent.json": {
+      "bytes": 259039,
+      "sha256": "8e3cc00d2242f3ebab31871a9195dfe1bd1757b63eb47f959c0b21d4e4329b11"
+    },
+    "personas.json": {
+      "bytes": 786053,
+      "sha256": "7001c8854ff70c2dcbb0f1064297a5fe671ea169338c9dc901b5f525651c09b1"
+    },
+    "policy.json": {
+      "bytes": 8091,
+      "sha256": "838d1b54217539d1e7d07e57c8a9fd37f922212f7d1903eac501a1701b235ad2"
+    }
+  },
+  "scope": "Fictional scenarios and aggregate descriptions; no individual records, raw competition data or model binaries."
+}

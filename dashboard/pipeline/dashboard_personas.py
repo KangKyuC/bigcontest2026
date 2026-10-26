@@ -20,7 +20,7 @@ DRAFTS=[
 def build_persona_catalog(data,diagnose,reason_names,root:Path):
     source=root/SOURCE
     if not source.is_file():raise ValueError('페르소나 초안 문서를 확인해 주세요.')
-    text=source.read_text()
+    text=source.read_text(encoding='utf-8')
     if not all(f'## P{i}.' in text for i in range(1,6)):raise ValueError('페르소나 초안의 다섯 사례를 확인해 주세요.')
     personas=[]
     for draft in DRAFTS:

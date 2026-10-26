@@ -1,5 +1,6 @@
 """06 페이지 '반드시 구현할 규칙'과 09 페이지 독립 기대 판정(EX-01~04)을 확인한다."""
 import pandas as pd
+import pytest
 
 import policy_gap_engine as e
 
@@ -158,8 +159,9 @@ def test_multiple_secondary_functions():
     assert port.portfolio.iloc[0] == e.PORT_OK
 
 
+@pytest.mark.local_data
 def test_every_target_in_final_table_is_declared():
-    import pathlib
-    f = pathlib.Path(__file__).resolve().parents[1] / 'data' / 'policy' / 'policy_programs_final.csv'
+    from paths import DATA_ROOT
+    f = DATA_ROOT / 'policy' / 'policy_programs_final.csv'
     g = pd.read_csv(f, encoding='utf-8-sig', dtype=str)
     assert set(g.target_req.dropna()) - {'미확인'} <= set(e.TARGET_TYPE)

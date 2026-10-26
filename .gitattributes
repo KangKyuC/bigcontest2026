@@ -10,6 +10,12 @@
 *.tsv text eol=lf
 *.yaml text eol=lf
 *.yml text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.sh text eol=lf
+*.ini text eol=lf
 
 *.pdf binary
 *.png binary
@@ -19,3 +25,4 @@
 *.xlsx binary
 *.docx binary
 *.pptx binary
+*.woff2 binary

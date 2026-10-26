@@ -2,7 +2,7 @@
 
 공개 화면: https://ieum-pink-psi.vercel.app
 
-지자체 담당자용 화면임. 동 × 성별 × 나이대 집계 신호로 가상 페르소나를 만들고, 강남 37개·춘천 17개 지원사업의 신청 조건과 한 명씩 대조해 단계(1~4)·할 일·정책 추천을 보여 줌.
+지자체 담당자용 정책 검토 화면입니다. 동 × 성별 × 나이대 집계 신호로 가상 페르소나를 만들고, 강남 37개·춘천 17개 지원사업의 신청 조건과 대조해 검토 단계(1~4)·할 일·정책 추천을 보여 줍니다. 공개 스냅샷에는 대표 사례 5개와 동별 사례 70개가 있습니다.
 - 페르소나는 모두 가상 인물임. 숫자는 실제 주민 수나 고립된 사람 수가 아님
 - 단계는 정해 둔 규칙의 출력임(학습된 개인 고립 확률이 아님). 같은 입력이면 늘 같은 결과가 나옴
 
@@ -16,8 +16,10 @@
 
 ## 화면 실행
 
+Node.js 24 이상과 npm이 필요합니다. 명령은 저장소 루트에서 실행합니다.
+
 ```sh
-npm --prefix dashboard ci
+npm --prefix dashboard ci --ignore-scripts
 npm --prefix dashboard run dev      # http://127.0.0.1:5173
 npm --prefix dashboard run build    # dashboard/dist
 ```
@@ -38,21 +40,30 @@ npm --prefix dashboard run build    # dashboard/dist
 ```sh
 python dashboard/pipeline/run_dong_personas.py
 python dashboard/pipeline/export_dashboard_static.py
-python -m pytest dashboard/pipeline/tests
+python -m pytest -q -m "not local_data"
 ```
 
-**이 저장소만으로는 다시 만들 수 없음.** 파이썬은 원래 작업 폴더 루트에서 돌던 코드를 그대로 옮긴 것이고, 다음 입력을 로컬에서 읽음. 저장소의 [데이터 공개 범위](../docs/DATA_POLICY.md)에 따라 넣지 않음.
+**화면 실행은 공개 저장소만으로 가능하지만, 스냅샷 전체 재생성에는 별도 입력이 필요합니다.** Python 3.11 환경에 `requirements-dev.txt`를 설치합니다. 파이프라인의 데이터 기본 위치는 저장소의 `data/`이며, `IEUM_DATA_ROOT` 환경변수로 다른 데이터 폴더를 지정할 수 있습니다. 작업 디렉터리와 무관하게 같은 경로를 사용합니다. 다음 입력은 [데이터 공개 범위](../docs/DATA_POLICY.md)에 따라 포함하지 않았습니다.
 - `data/policy/personas/m3_group_profiles.csv` (M3 220셀 결합 입력), `sk_weekend_by_dong.csv` (SK 집계) — 대회 자료에서 만든 입력
 - `data/policy/` 아래 사업 조건표·출처·운영 장소, `data/reference/` 행정동 경계, `data/external/` 동 인구
   - 사업 조건표는 공개 공고를 조사해 만든 자료임. 공개 여부는 팀이 정하면 추가함
 
+공개 시험은 합성 정책 조건·검토 규칙·스냅샷 정합성·로컬 서버 보안을 확인합니다. `local_data` 표시가 붙은 6개 통합 시험은 정책 입력이 있을 때만 실행합니다. 공개 화면을 보는 데 이 통합 시험이나 Python 서버는 필요하지 않습니다. 원자료 없는 시험을 전체 정책 분석 재현으로 설명하지 않습니다.
+
+공개 스냅샷의 출처와 파일 SHA-256은 [snapshot-manifest.json](snapshot-manifest.json)에 있습니다. 스냅샷을 의도적으로 갱신했으면 저장소 루트에서 `python scripts/update_snapshot_manifest.py`를 실행합니다.
+
 ## 배포
 
-`pipeline/deploy_dashboard.sh`: 결과 생성 → 빌드 → Vercel 배포 → 공개 사이트 자료가 로컬과 같은지 확인. Vercel 로그인은 각자 함(`npx vercel login`).
+Vercel에서 프로젝트 루트를 `dashboard/`로 설정하면 `vercel.json`의 Vite 빌드와 보안 헤더를 사용합니다. 공개 저장소에는 배포 토큰·조직 ID·프로젝트 ID를 저장하지 않습니다.
+
+기존 프로젝트에 수동 배포할 때는 `pipeline/deploy_dashboard.sh`를 사용합니다. 로컬에 설치한 Vercel CLI에 로그인하고 `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`, `VERCEL_CLI`를 환경변수로 지정합니다. 기본적으로 공개 스냅샷을 빌드하며, 원본으로 다시 생성하려면 `REBUILD_DATA=1`과 필요한 입력을 준비합니다. 배포 후 원격 화면과 세 JSON의 해시를 확인해야 합니다.
+
+선택적인 `dashboard_server.py`는 원자료를 가진 로컬 분석용이며 `127.0.0.1`에만 바인딩합니다. 허용된 Host·동일 출처·JSON 크기를 검사합니다. 인터넷 공개 서버로 사용하지 않습니다.
 
 ## 알려진 한계
 
-- 화면의 "연락·외출 예측" 표기: 실제 값은 M3 관측 백분위(`contact_seoul_peer_percentile` 등)임. 발표자료와 맞추려고 발표 뒤 "연락·외출 집계"로 고칠 예정
+- 연락·외출은 M3 입력의 관측 백분위입니다. 화면과 스냅샷은 이를 "연락·외출 집계"로 표시하며, 학습 모델의 개인 위험 예측값으로 해석하지 않습니다.
 - 춘천은 서울 통신 자료가 없어 신호가 주말 사람 흐름 하나뿐 → 모두 3단계. 교동(한림대)·효자2동(강원대)은 대학가 영향일 수 있음
 - 동별 페르소나는 모두 혼자 산다고 가정함. 가족과 산다고 바꾸면 닫히는 분야는 주거·안전뿐임(강남 36·춘천 6 조합)
 - "60세 미만은 평일 낮에 못 감" 가정: 강남 결론은 가정과 무관, 춘천 "저녁·주말 회차 → 29명"은 일하는 사람 기준
+- 정책 조건은 조사 시점의 스냅샷이며, 현재 모집 여부·정원·예외·선정 가능성은 운영기관 확인이 필요합니다. 조건 대조 결과는 행정기관의 실제 자격 판정이나 고립 감소 효과를 보장하지 않습니다.

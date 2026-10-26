@@ -1,4 +1,4 @@
-# Statistical core and raw-data reconstruction. Tested with CPython 3.9.
+# Statistical core and raw-data reconstruction. Use supported CPython 3.11.
 numpy==2.0.2
 pandas==2.3.3
 scipy==1.13.1

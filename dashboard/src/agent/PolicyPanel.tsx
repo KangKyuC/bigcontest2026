@@ -2,6 +2,7 @@ import { ArrowUpRight, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import type { PersonaLite, PolicyRec } from './types';
 import { REC_KIND } from './types';
+import { externalUrl } from '@/lib/external-url';
 
 type Props = { rec: PolicyRec; region: string; byId: Map<string, PersonaLite>; onClose: () => void; onPersona: (id: string) => void };
 
@@ -30,7 +31,7 @@ export default function PolicyPanel({ rec, region, byId, onClose, onPersona }: P
           <div className="rec-hero"><b className="num">{rec.count}</b><span>명의 페르소나에게 해당해요</span></div>
           <p className="rec-why">{rec.why}</p>
           <p className="assume">{HOW[rec.kind]}</p>
-          {rec.source && <a className="rec-link" href={rec.source} target="_blank" rel="noreferrer">{rec.program} 공고 원문 보기<ArrowUpRight size={14} aria-hidden /></a>}
+          {externalUrl(rec.source) && <a className="rec-link" href={externalUrl(rec.source)} target="_blank" rel="noopener noreferrer">{rec.program} 공고 원문 보기<ArrowUpRight size={14} aria-hidden /></a>}
         </section>
 
         {rec.examples && rec.examples.length > 0 && <section className="step">
@@ -41,7 +42,7 @@ export default function PolicyPanel({ rec, region, byId, onClose, onPersona }: P
                 <strong>{x.region} · {x.program}</strong>
                 <p>{x.form} · {x.time}</p>
                 <p className="dim">{x.checked === '원문 일치' ? '공고 원문과 대조했어요' : '공고 원문 대조 전이에요'}</p>
-                <a href={x.url} target="_blank" rel="noreferrer" aria-label={`${x.program} 원문 열기`}><ArrowUpRight size={16} /></a>
+                {externalUrl(x.url) && <a href={externalUrl(x.url)} target="_blank" rel="noopener noreferrer" aria-label={`${x.program} 원문 열기`}><ArrowUpRight size={16} /></a>}
               </li>
             ))}
           </ul>

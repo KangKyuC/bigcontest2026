@@ -1,6 +1,8 @@
 import dashboard_server as s
+import pytest
 
 
+@pytest.mark.local_data
 def test_agent_judgements():
     agent = s.build_agent(s.load_data(), s.REASONS)
     p = {x['id']: x for x in agent['personas']}
@@ -13,6 +15,7 @@ def test_agent_judgements():
     assert all(f['kind'] == 'closed' for f in p['P1']['findings'])  # 일자리 모집 종료만 남음
 
 
+@pytest.mark.local_data
 def test_dong_personas_use_dong_limited_programs():
     agent = s.build_agent(s.load_data(), s.REASONS)
     dong = [p for p in agent['personas'] if p['kind'] == 'dong']
@@ -23,6 +26,7 @@ def test_dong_personas_use_dong_limited_programs():
     assert set(rows[rows.id.isin(['G02', 'GN-25'])].reason) == {'residence:OUTSIDE_AREA'}
 
 
+@pytest.mark.local_data
 def test_policy_recommendations():
     import dashboard_policy as dp
     data = s.load_data()
@@ -42,6 +46,10 @@ def test_levels_follow_fixed_rule():
     assert a.level_of({'contact': 0.03}, [])[0] == 2                              # 신호 강함 + 갈 곳 있음
     assert a.level_of({'sk': 0.15}, [{'kind': 'closed'}])[0] == 4                # 모집 종료만은 공백으로 안 셈
     assert a.level_of({'contact': 0.97, 'out': 0.01}, [{'kind': 'blocked'}])[0] == 3   # 연락이 많으면 신호 강함 아님
+
+
+@pytest.mark.local_data
+def test_generated_agent_trace():
     agent = s.build_agent(s.load_data(), s.REASONS)
     assert all(p['level'] in (1, 2, 3, 4) and len(p['trace']) == 6 for p in agent['personas'])
 
@@ -53,6 +61,7 @@ def test_reason_codes_never_shown_raw():
     assert _reason('x:SOME_NEW_CODE', {}) == '기타 조건'
 
 
+@pytest.mark.local_data
 def test_meet_programs_without_local_site_rank_last():
     import run_persona_recommend as rr
     r = rr.recommend()

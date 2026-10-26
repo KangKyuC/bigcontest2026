@@ -6,21 +6,21 @@
 
 원본 8개와 이 저장소만 있으면 이전 DuckDB·공간 중간 CSV·특정 PC 경로 없이 재집계할 수 있습니다. 원자료가 없으면 코드 시험과 보존 결과 열람까지만 가능합니다.
 
-Windows·CPython 3.9를 실제 검증에 사용했습니다. 통계 핵심은 `requirements.txt`, 보고서까지 만들려면 `requirements-report.txt`를 설치합니다.
+현재 권장 환경은 **CPython 3.11**입니다. 통계 핵심은 `requirements.txt`, 보고서까지 만들려면 `requirements-report.txt`를 설치합니다. 원 연구의 통계 설정과 핵심 패키지 버전은 유지했습니다.
 
-검증에 사용한 전이 의존성까지 고정한 전체 목록은 [requirements-lock-py39.txt](../requirements-lock-py39.txt)입니다. 같은 Python 3.9 환경을 복원하려면 이 파일을 설치할 수 있습니다.
+전이 의존성과 배포 파일의 SHA-256을 고정한 전체 목록은 [requirements-lock-py311.txt](../requirements-lock-py311.txt)입니다. 완전히 고정해 설치하려면 `python -m pip install --require-hashes -r requirements-lock-py311.txt`를 사용합니다. Python 3.9는 지원이 종료됐고 과거 고정환경의 Pillow에 알려진 취약점이 있어 기본 설치 경로에서 제거했습니다. 과거 실행 기록 자체는 [검증 문서](VERIFICATION.md)에 보존합니다.
 
 PowerShell:
 
 ```powershell
-py -3.9 -m venv .venv
+py -3.11 -m venv .venv
 & ./.venv/Scripts/python.exe -m pip install -r requirements-report.txt
 ```
 
 macOS/Linux:
 
 ```bash
-python3.9 -m venv .venv
+python3.11 -m venv .venv
 .venv/bin/python -m pip install -r requirements-report.txt
 ```
 
