@@ -53,3 +53,9 @@ __pycache__/
 Thumbs.db
 Desktop.ini
 ~$*
+
+# Dashboard build outputs and local-only font files.
+/dashboard/node_modules/
+/dashboard/dist/
+*.tsbuildinfo
+/dashboard/public/fonts/Satoshi-*.woff2
